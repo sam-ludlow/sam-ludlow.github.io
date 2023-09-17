@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%;">
+<head>
+    <meta charset="utf-8" />
+	<title>JSBOS - JavaScript Bitmap Operating System</title>
+</head>
+<body>
+
+    <!-- JSBOS - JavaScript Bitmap Operating System -->
+    <!-- Sam Ludlow 2020 -->
+
+    <!-- Go to the bottom of this file for "My Program" the entry point -->
+
+    <script type="text/javascript">
+
+        class JSBOS_Characters {
+            constructor() {
+
+				this.bitmaps = new Array(32);
+
+				this.bitmaps.fill(
+					{ width: 8, data: [0, 0, 0, 0, 0, 0, 0, 0,] }
+				);
+
+				//	CREDIT: Acorn BBC Micro
+				this.bitmaps.push(
+					...[
+						{ width: 8, data: [0, 0, 0, 0, 0, 0, 0, 0,] },
+						{ width: 8, data: [0, 0, 0, 95, 95, 0, 0, 0,] },
+						{ width: 8, data: [0, 7, 7, 0, 7, 7, 0, 0,] },
+						{ width: 8, data: [0, 20, 127, 127, 20, 127, 127, 20,] },
+						{ width: 8, data: [0, 36, 46, 106, 127, 43, 58, 18,] },
+						{ width: 8, data: [0, 35, 51, 24, 12, 102, 98, 0,] },
+						{ width: 8, data: [0, 54, 127, 73, 95, 54, 96, 80,] },
+						{ width: 8, data: [0, 0, 4, 6, 3, 1, 0, 0,] },
+						{ width: 8, data: [0, 0, 28, 62, 99, 65, 0, 0,] },
+						{ width: 8, data: [0, 0, 65, 99, 62, 28, 0, 0,] },
+						{ width: 8, data: [0, 20, 28, 62, 62, 28, 20, 0,] },
+						{ width: 8, data: [0, 8, 8, 62, 62, 8, 8, 0,] },
+						{ width: 8, data: [0, 0, 128, 224, 96, 0, 0, 0,] },
+						{ width: 8, data: [0, 8, 8, 8, 8, 8, 8, 0,] },
+						{ width: 8, data: [0, 0, 0, 96, 96, 0, 0, 0,] },
+						{ width: 8, data: [0, 32, 48, 24, 12, 6, 2, 0,] },
+						{ width: 8, data: [0, 62, 127, 89, 77, 127, 62, 0,] },
+						{ width: 8, data: [0, 64, 66, 127, 127, 64, 64, 0,] },
+						{ width: 8, data: [0, 66, 99, 113, 89, 79, 70, 0,] },
+						{ width: 8, data: [0, 34, 99, 73, 73, 127, 54, 0,] },
+						{ width: 8, data: [0, 24, 28, 22, 127, 127, 16, 0,] },
+						{ width: 8, data: [0, 39, 103, 69, 69, 125, 57, 0,] },
+						{ width: 8, data: [0, 60, 126, 75, 73, 121, 48, 0,] },
+						{ width: 8, data: [0, 1, 113, 121, 13, 7, 3, 0,] },
+						{ width: 8, data: [0, 54, 127, 73, 73, 127, 54, 0,] },
+						{ width: 8, data: [0, 6, 79, 73, 105, 63, 30, 0,] },
+						{ width: 8, data: [0, 0, 0, 108, 108, 0, 0, 0,] },
+						{ width: 8, data: [0, 0, 128, 236, 108, 0, 0, 0,] },
+						{ width: 8, data: [0, 8, 28, 54, 99, 65, 0, 0,] },
+						{ width: 8, data: [0, 20, 20, 20, 20, 20, 20, 0,] },
+						{ width: 8, data: [0, 0, 65, 99, 54, 28, 8, 0,] },
+						{ width: 8, data: [0, 2, 3, 89, 93, 7, 2, 0,] },
+						{ width: 8, data: [0, 62, 127, 65, 93, 87, 30, 0,] },
+						{ width: 8, data: [0, 126, 127, 9, 9, 127, 126, 0,] },
+						{ width: 8, data: [0, 127, 127, 73, 73, 127, 54, 0,] },
+						{ width: 8, data: [0, 62, 127, 65, 65, 99, 34, 0,] },
+						{ width: 8, data: [0, 127, 127, 65, 99, 62, 28, 0,] },
+						{ width: 8, data: [0, 127, 127, 73, 73, 73, 65, 0,] },
+						{ width: 8, data: [0, 127, 127, 9, 9, 9, 1, 0,] },
+						{ width: 8, data: [0, 62, 127, 65, 73, 123, 58, 0,] },
+						{ width: 8, data: [0, 127, 127, 8, 8, 127, 127, 0,] },
+						{ width: 8, data: [0, 65, 65, 127, 127, 65, 65, 0,] },
+						{ width: 8, data: [0, 32, 97, 65, 127, 63, 1, 0,] },
+						{ width: 8, data: [0, 127, 127, 28, 54, 99, 65, 0,] },
+						{ width: 8, data: [0, 127, 127, 64, 64, 64, 64, 0,] },
+						{ width: 8, data: [0, 127, 127, 6, 28, 6, 127, 127,] },
+						{ width: 8, data: [0, 127, 127, 12, 24, 127, 127, 0,] },
+						{ width: 8, data: [0, 62, 127, 65, 65, 127, 62, 0,] },
+						{ width: 8, data: [0, 127, 127, 9, 9, 15, 6, 0,] },
+						{ width: 8, data: [0, 62, 127, 65, 49, 111, 94, 0,] },
+						{ width: 8, data: [0, 127, 127, 9, 25, 127, 102, 0,] },
+						{ width: 8, data: [0, 38, 111, 73, 73, 123, 50, 0,] },
+						{ width: 8, data: [0, 1, 1, 127, 127, 1, 1, 0,] },
+						{ width: 8, data: [0, 63, 127, 64, 64, 127, 63, 0,] },
+						{ width: 8, data: [0, 31, 63, 96, 96, 63, 31, 0,] },
+						{ width: 8, data: [0, 127, 127, 48, 28, 48, 127, 127,] },
+						{ width: 8, data: [0, 99, 119, 28, 28, 119, 99, 0,] },
+						{ width: 8, data: [0, 7, 15, 120, 120, 15, 7, 0,] },
+						{ width: 8, data: [0, 97, 113, 89, 77, 71, 67, 0,] },
+						{ width: 8, data: [0, 127, 127, 65, 65, 65, 0, 0,] },
+						{ width: 8, data: [0, 2, 6, 12, 24, 48, 32, 0,] },
+						{ width: 8, data: [0, 0, 65, 65, 65, 127, 127, 0,] },
+						{ width: 8, data: [0, 12, 6, 3, 3, 6, 12, 0,] },
+						{ width: 8, data: [128, 128, 128, 128, 128, 128, 128, 128,] },
+						{ width: 8, data: [0, 0, 1, 3, 6, 4, 0, 0,] },
+						{ width: 8, data: [0, 32, 116, 84, 84, 124, 120, 0,] },
+						{ width: 8, data: [0, 127, 127, 68, 68, 124, 56, 0,] },
+						{ width: 8, data: [0, 56, 124, 68, 68, 108, 40, 0,] },
+						{ width: 8, data: [0, 56, 124, 68, 68, 127, 127, 0,] },
+						{ width: 8, data: [0, 56, 124, 84, 84, 92, 24, 0,] },
+						{ width: 8, data: [0, 8, 126, 127, 9, 9, 0, 0,] },
+						{ width: 8, data: [0, 24, 188, 164, 164, 252, 124, 0,] },
+						{ width: 8, data: [0, 127, 127, 4, 4, 124, 120, 0,] },
+						{ width: 8, data: [0, 0, 68, 125, 125, 64, 0, 0,] },
+						{ width: 8, data: [0, 128, 132, 253, 125, 0, 0, 0,] },
+						{ width: 8, data: [0, 127, 127, 16, 56, 108, 68, 0,] },
+						{ width: 8, data: [0, 0, 65, 127, 127, 64, 0, 0,] },
+						{ width: 8, data: [0, 120, 124, 12, 56, 12, 124, 120,] },
+						{ width: 8, data: [0, 124, 124, 4, 4, 124, 120, 0,] },
+						{ width: 8, data: [0, 56, 124, 68, 68, 124, 56, 0,] },
+						{ width: 8, data: [0, 252, 252, 36, 36, 60, 24, 0,] },
+						{ width: 8, data: [0, 24, 60, 36, 36, 252, 252, 128,] },
+						{ width: 8, data: [0, 124, 124, 8, 4, 12, 8, 0,] },
+						{ width: 8, data: [0, 72, 92, 84, 84, 116, 36, 0,] },
+						{ width: 8, data: [0, 4, 63, 127, 68, 68, 0, 0,] },
+						{ width: 8, data: [0, 60, 124, 64, 64, 124, 124, 0,] },
+						{ width: 8, data: [0, 28, 60, 96, 96, 60, 28, 0,] },
+						{ width: 8, data: [0, 60, 124, 96, 56, 96, 124, 60,] },
+						{ width: 8, data: [0, 68, 108, 56, 56, 108, 68, 0,] },
+						{ width: 8, data: [0, 28, 188, 160, 160, 252, 124, 0,] },
+						{ width: 8, data: [0, 68, 100, 116, 92, 76, 68, 0,] },
+						{ width: 8, data: [0, 8, 8, 62, 119, 65, 0, 0,] },
+						{ width: 8, data: [0, 0, 0, 119, 119, 0, 0, 0,] },
+						{ width: 8, data: [0, 0, 65, 119, 62, 8, 8, 0,] },
+						{ width: 8, data: [0, 6, 3, 1, 2, 4, 6, 3,] },
+						{ width: 8, data: [0, 0, 0, 0, 0, 0, 0, 0,] },
+					],
+				);
+            }
+        };
+
+        class JSBOS_Colour {
+
+            constructor(count) {
+
+                if (!count)
+                    count = 360;
+
+                this.table = [];
+                this.index = 0;
+
+				for (let hue = 0; hue < count; ++hue)
+					this.table.push(this.HSVtoRGB(hue));
+            }
+
+			move(step) {
+
+				if (!step)
+					step = 1;
+
+				const current = this.index;
+
+                this.index += step;
+                if (this.index >= this.table.length)
+                    this.index = 0;
+
+				return this.table[current];
+            }
+
+			get() {
+
+                return this.table[this.index];
+			}
+            
+            //	CREDIT: https://stackoverflow.com/questions/17242144/javascript-convert-hsb-hsv-color-to-rgb-accurately
+			HSVtoRGB(h) {
+
+                h = h / 360;
+				const s = 1;
+				const v = 1;
+
+				var r, g, b, i, f, p, q, t;
+				i = Math.floor(h * 6);
+				f = h * 6 - i;
+				p = v * (1 - s);
+				q = v * (1 - f * s);
+				t = v * (1 - (1 - f) * s);
+				switch (i % 6) {
+					case 0: r = v, g = t, b = p; break;
+					case 1: r = q, g = v, b = p; break;
+					case 2: r = p, g = v, b = t; break;
+					case 3: r = p, g = q, b = v; break;
+					case 4: r = t, g = p, b = v; break;
+					case 5: r = v, g = p, b = q; break;
+				}
+				const rgb = {
+					r: Math.round(r * 255),
+					g: Math.round(g * 255),
+					b: Math.round(b * 255)
+				};
+
+				return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+            };
+        };
+
+        class JSBOS_Screen {
+
+            constructor(container, width, height) {
+
+                this.container = container;
+                this.width = width;
+                this.height = height;
+                this.count = this.width * this.height;
+
+                this.create();
+            }
+
+            create() {
+
+                const table = document.createElement('table');
+
+				table.style.borderCollapse = "collapse";
+				table.style.width = '100%';
+				table.style.height = '100%';
+                table.style.backgroundColor = '#000000';
+
+				for (let y = 0; y < this.height; ++y) {
+                    let row = document.createElement('tr');
+					for (let x = 0; x < this.width; ++x) {
+						let cell = document.createElement('td');
+						cell.id = `${y * this.width + x}`;
+						row.appendChild(cell);
+					}
+					table.appendChild(row);
+                }
+
+                this.container.appendChild(table);
+            }
+
+			plot(x, y, htmlcolour) {
+
+                const cell = document.getElementById(`${y * this.width + x}`);
+				cell.style.backgroundColor = htmlcolour;
+            }
+
+			clear() {
+
+				for (let y = 0; y < this.height; ++y) {
+					for (let x = 0; x < this.width; ++x) {
+						this.plot(x, y, null);
+					}
+				}
+			}
+		};
+
+		class JSBOS_Sprite {
+
+			constructor(x, y, bitmaps, htmlColour) {
+				this.x = x;
+				this.y = y;
+
+				this.index = 0;
+
+				this.bitmaps = bitmaps;
+
+				this.htmlColour = htmlColour;
+			}
+
+			getBitmap() {
+				return this.bitmaps[this.index];
+			}
+
+			animate() {
+				if (this.index === (this.bitmaps.length - 1))
+					this.index = 0;
+				else
+					++this.index;
+			}
+		}
+
+		class JSBOS_Layer {
+
+			constructor(width, height) {
+				this.width = width;
+				this.height = height;
+
+				this.x = 0;
+				this.y = 0;
+
+				this.bitmap = new Array(this.width * this.height);
+
+				this.sprites = [];
+			}
+
+			refresh() {
+
+				this.bitmap.fill(null);
+
+				for (let spriteId = 0; spriteId < this.sprites.length; ++spriteId) {
+					let sprite = this.sprites[spriteId];
+					let bitmap = sprite.getBitmap();
+
+					const rows = bitmap.data.length / bitmap.width;
+
+					for (let row = 0; row < rows; ++row) {
+						for (let x = 0; x < bitmap.width; ++x) {
+							let colData = bitmap.data[(row * bitmap.width) + x];
+							for (let y = 0; y < 8; ++y) {
+								if (colData & (1 << y)) {
+									let xPlot = sprite.x + x;
+									let yPlot = sprite.y + y + (row * 8);
+									this.bitmap[yPlot * this.width + xPlot] = sprite.htmlColour;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			animate() {
+				this.sprites.forEach(sprite => {
+					sprite.animate();
+				});
+			}
+		}
+
+        class JSBOS {
+
+			constructor(width, height, container) {
+
+				this.width = width;
+				this.height = height;
+
+                this.container = container;
+
+                if (!this.container)
+                    this.container = document.documentElement;
+
+				this.characters = new JSBOS_Characters();
+                this.colour = new JSBOS_Colour();
+				this.screen = new JSBOS_Screen(this.container, this.width, this.height);
+				this.buffer = new Array(this.width * this.height);
+
+				this.layers = [new JSBOS_Layer(this.width, this.height)];
+            }
+
+            sleep(ms) {
+                if (!ms)
+                    ms = 1000;
+
+				return new Promise(resolve => setTimeout(resolve, ms))
+			}
+
+			refresh() {
+
+				this.buffer.fill(null);
+
+				for (let layerId = 0; layerId < this.layers.length; ++layerId) {
+					let layer = this.layers[layerId];
+
+					for (let pixel = 0; pixel < this.buffer.length; ++pixel) {
+						let htmlColour = layer.bitmap[pixel];
+						if (htmlColour)
+							this.buffer[pixel] = htmlColour;
+					}
+				}
+
+				for (let y = 0; y < this.height; ++y) {
+					for (let x = 0; x < this.width; ++x) {
+						let htmlColour = this.buffer[y * this.width + x];
+						this.screen.plot(x, y, htmlColour);
+					}
+				}
+			}
+
+			refreshLayers() {
+				this.layers.forEach(layer => {
+					layer.refresh();
+				});
+			}
+
+			newLayer() {
+				this.layers.push(new JSBOS_Layer(this.width, this.height));
+				return this.layers.length - 1;
+			}
+
+			place(layerId, x, y, bitmaps, htmlColour) {
+
+				const layer = this.layers[layerId];
+				const sprite = new JSBOS_Sprite(x, y, bitmaps, htmlColour);
+				layer.sprites.push(sprite);
+			}
+
+			print(layerId, xPos, yPos, text, htmlcolour) {
+
+				const layer = this.layers[layerId];
+
+				for (let textX = 0; textX < text.length; ++textX) {
+
+					let ascii = text.charCodeAt(textX);
+					let bitmap = this.characters.bitmaps[ascii];
+
+					let sprite = new JSBOS_Sprite(xPos + (textX * bitmap.width), yPos, [bitmap], htmlcolour);
+
+					layer.sprites.push(sprite);
+				}
+			}
+
+			// Direct layer
+
+			plot(layerId, x, y, htmlcolour) {
+				let layer = this.layers[layerId];
+				layer.bitmap[y * this.width + x] = htmlcolour;
+			}
+
+			printDirect(layerId, xPos, yPos, text, htmlcolour) {
+
+				for (let textX = 0; textX < text.length; ++textX) {
+
+					let ascii = text.charCodeAt(textX);
+					let bitmap = this.characters.bitmaps[ascii];
+					const rows = bitmap.data.length / bitmap.width;
+
+					for (let row = 0; row < rows; ++row) {
+						for (let x = 0; x < bitmap.width; ++x) {
+							let colData = bitmap.data[(row * bitmap.width) + x];
+							for (let y = 0; y < 8; ++y) {
+								if (colData & (1 << y))
+									this.plot(layerId, xPos + (textX * 8) + x, yPos + y + (row * 8), htmlcolour);
+							}
+						}
+					}
+				}
+			}
+
+			// Direct Screen
+
+            screenTest() {
+				for (let y = 0; y < this.screen.height; ++y) {
+					for (let x = 0; x < this.screen.width; ++x) {
+						this.screen.plot(x, y, this.colour.move());
+					}
+				}
+            }
+
+        };
+
+
+    </script>
+
+    <!-- My Bitmaps -->
+
+    <script type="text/javascript">
+
+		//	CREDIT: Taito
+		const spaceInvaderBitmaps = [
+			[
+				{ width: 8, data: [88, 188, 22, 63, 63, 22, 188, 88,] },
+				{ width: 8, data: [152, 92, 182, 95, 95, 182, 92, 152,] },
+			],
+			[
+				{ width: 11, data: [112, 24, 125, 182, 188, 60, 188, 182, 125, 24, 112,] },
+				{ width: 11, data: [30, 184, 125, 54, 60, 60, 60, 54, 125, 184, 30,] },
+			],
+			[
+				{ width: 12, data: [156, 158, 94, 118, 55, 95, 95, 55, 118, 94, 158, 156,] },
+				{ width: 12, data: [28, 94, 254, 182, 55, 95, 95, 55, 182, 254, 94, 28,] },
+			],
+		];
+
+    </script>
+
+    <!-- My Program -->
+
+    <script type="text/javascript">
+
+		const asciiTable = (os, layerId, xPos, yPos, width) => {
+			for (let ascii = 32; ascii < 127; ++ascii) {
+				let x = ((ascii - 32) % width) * 8;
+				let y = Math.trunc((ascii - 32) / width) * 8;
+
+				os.print(layerId, xPos + x, yPos + y, String.fromCharCode(ascii), os.colour.move(10));
+			}
+		};
+
+		const spaceInvaderField = (os, layerId, xPos, yPos, width, height) => {
+
+			const xStep = 13;
+			const yStep = 10;
+
+			const invTypesPerRow = height / 3;
+
+			for (let row = 0; row < height; ++row) {
+
+				let invType = Math.trunc(row / invTypesPerRow);
+				let bitmaps = spaceInvaderBitmaps[invType];
+				let xOffset = Math.trunc((12 - bitmaps[0].width) / 2) + 3;
+
+				for (let col = 0; col < width; ++col) {
+
+					let x = col * xStep + xOffset;
+					let y = row * yStep + 1;
+
+					os.place(layerId, xPos + x, yPos + y, bitmaps, os.colour.move(6));
+				}
+			}
+		};
+
+		const randomNext = (count) => {
+			return Math.floor(Math.random() * count);
+		};
+
+		const animate = (os) => {
+
+			os.layers[0].sprites.forEach(sprite => {
+				sprite.x += randomNext(3) - 1;
+				sprite.y += randomNext(3) - 1;
+			});
+
+			os.layers[1].animate();
+
+			os.refreshLayers();
+			os.refresh();
+		};
+
+        const perform = async () => {
+
+            const shrink = 12;
+
+			const os = new JSBOS(1920 / shrink, 1080 / shrink);
+
+			os.screenTest();
+
+			await os.sleep();
+
+			os.newLayer();
+
+			// Layer 0
+			asciiTable(os, 0, 18, 32, 16);
+
+			os.colour.index = 0;
+
+			// Layer 1
+			spaceInvaderField(os, 1, 0, 0, 12, 3);
+
+			os.refreshLayers();
+			os.refresh();
+
+			await os.sleep();
+
+			setInterval(() => animate(os), 250);
+        };
+
+        perform();
+
+    </script>
+
+</body>
+</html>
